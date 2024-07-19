@@ -5,13 +5,13 @@ import axios from "axios";
 //movie list
 export const movieList = createAsyncThunk("get/movieList", async ({ newstate, pageno }) => {
     // console.log(`http://www.omdbapi.com/?apikey=73fbe8af&s=${newstate}&type=movie&page=${pageno}`)
-    let res = await axios.post(`http://www.omdbapi.com/?apikey=73fbe8af&s=${newstate}&type=movie&page=${pageno}`)
+    let res = await axios.post(`https://www.omdbapi.com/?apikey=73fbe8af&s=${newstate}&type=movie&page=${pageno}`)
     return res?.data
 })
 
 //single movie data
 export const singleMovie = createAsyncThunk("get/singleMovie", async (id) => {
-    let res = await axios.post(`http://www.omdbapi.com/?apikey=73fbe8af&type=movie&i=${id}`)
+    let res = await axios.post(`https://www.omdbapi.com/?apikey=73fbe8af&type=movie&i=${id}`)
     return res?.data
 })
 
@@ -19,7 +19,7 @@ export const singleMovie = createAsyncThunk("get/singleMovie", async (id) => {
 export const wishlistsMovie = createAsyncThunk("get/wishlistsMovie", async (mappedImdbIDs) => {
     // console.log("ID: ", mappedImdbIDs);
     const requests = mappedImdbIDs.map(mappedImdbIDs =>
-        axios.post(`http://www.omdbapi.com/?apikey=73fbe8af&type=movie&i=${mappedImdbIDs}`)
+        axios.post(`https://www.omdbapi.com/?apikey=73fbe8af&type=movie&i=${mappedImdbIDs}`)
     );
     const responses = await Promise.all(requests);
     return responses.map(response => response.data);
