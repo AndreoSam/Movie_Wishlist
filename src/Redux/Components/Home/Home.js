@@ -38,7 +38,6 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
 
   useEffect(() => {
     if (loggedInUser) {
-      // Load user-specific data from local storage
       const storedSearchQueries = localStorage.getItem(`searchQueries_${loggedInUser}`);
       const storedWishlist = localStorage.getItem(`wishlist_${loggedInUser}`);
       const storedSelectedWishlist = localStorage.getItem(`selectedWishlist_${loggedInUser}`);
@@ -55,7 +54,7 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
         setSelectedwishlist(JSON.parse(storedSelectedWishlist));
       }
       if (storedClickedItems) {
-        setClickedItems(JSON.parse(storedClickedItems)); // Update state from localStorage
+        setClickedItems(JSON.parse(storedClickedItems));
       }
     }
   }, [loggedInUser]);
@@ -63,8 +62,6 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
   useEffect(() => {
     if (loggedInUser) {
       // console.log("loggedInUser: ", loggedInUser);
-
-      // Save user-specific data to local storage
       localStorage.setItem(`searchQueries_${loggedInUser}`, JSON.stringify(searchQueries));
       localStorage.setItem(`wishlist_${loggedInUser}`, JSON.stringify(wishlist));
       localStorage.setItem(`selectedWishlist_${loggedInUser}`, JSON.stringify(selectedwishlist));
@@ -126,20 +123,6 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
 
   let dataFound = (false);
 
-  // const combinedResults =
-  //   searchQueries.reduce((acc, prod) => {
-  //     acc.push(prod);
-  //     if (newselected == prod.query) {
-  //       // console.log("Found: ", prod.imdbIDs);
-  //       setNewarr(prod)
-  //       dataFound = true;
-  //     }
-  //     return acc;
-  //   }, []);
-
-  // if (!dataFound) {
-  //   setNewarr("")
-  // }
   const combinedResults = searchQueries.reduce((acc, prod) => {
     acc.push(prod);
     return acc;
@@ -195,7 +178,7 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
                   <button onClick={addItemToWishlist}>Add</button>
                 </div>
 
-               <div className='wishlist_scrollable'>
+                <div className='wishlist_scrollable'>
                   <Link>
                     {searchedname}</Link>
                   {filteredWishlist.map((item, index) => (
@@ -208,7 +191,7 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
                   ))}
                 </div>
 
-                
+
               </div>
             </div>
             <div className='home_bar_left_bottom'>

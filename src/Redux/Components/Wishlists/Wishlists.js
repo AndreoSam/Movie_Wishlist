@@ -49,7 +49,6 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
   const { loading } = useSelector((state) => state.user)
   // console.log("loading: ", loading)
 
-  // Memoize effect callback
   const fetchWishlists = useCallback(async () => {
     try {
       const res = await dispatch(wishlistsMovie(mappedImdbIDs));
@@ -112,27 +111,24 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
 
   const removeItemFromWishlist = (imdbID) => {
     console.log('Removing item with imdbID:', imdbID);
-    // Update the wishlist
     const updatedWishlist = wishlist.filter(item => item.imdbID !== imdbID);
     setWishlist(updatedWishlist);
     localStorage.setItem(`wishlist_${loggedInUser}`, JSON.stringify(updatedWishlist));
 
-    // Update searchQueries
     const updatedQuery = searchQueries.map((item) => ({
       ...item,
       imdbIDs: item.imdbIDs.filter(id => id !== imdbID)
-    })).filter(item => item.imdbIDs.length > 0); // Filter out items where imdbIDs is empty
+    })).filter(item => item.imdbIDs.length > 0);
     setSearchQueries(updatedQuery);
     localStorage.setItem(`searchQueries_${loggedInUser}`, JSON.stringify(updatedQuery));
 
-    // Update clickedItems
     const updatedClickedItems = clickedItems.map((item) => {
       if (item.query === newselected) {
         const updatedImdbIDs = item.imdbIDs.filter(id => id !== imdbID);
         return updatedImdbIDs.length > 0 ? { ...item, imdbIDs: updatedImdbIDs } : null;
       }
       return item;
-    }).filter(item => item !== null); // Filter out items where imdbIDs is empty
+    }).filter(item => item !== null);
     console.log('Updated clickedItems:', updatedClickedItems);
     setClickedItems(updatedClickedItems);
     localStorage.setItem(`clickedItems_${loggedInUser}`, JSON.stringify(updatedClickedItems));

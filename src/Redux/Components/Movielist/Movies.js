@@ -106,7 +106,7 @@ const Movies = ({ loggedInUser }) => {
             return;
         }
         setNewstate(state);
-        setPageno(1); // Reset to the first page for new searches
+        setPageno(1);
         setPages(1);
         setError(null);
     })
@@ -119,7 +119,6 @@ const Movies = ({ loggedInUser }) => {
     };
 
     const performSearch = (query) => {
-        // Simulate search results (empty array means no results found)
         return query === 'notfound' ? [] : ['result1', 'result2'];
     };
     const handleSearch = (query) => {
@@ -130,24 +129,19 @@ const Movies = ({ loggedInUser }) => {
             setError('No results found');
         } else {
             setError('');
-            // Process search results as needed
         }
     };
 
     const handleModalConfirm = () => {
         if (selectedwishlist) {
             setClickedItems((prevState) => {
-                // Create a copy of the current state
                 const updatedClickedItems = [...prevState];
 
-                // Find the wishlist object in the array
                 const wishlistIndex = updatedClickedItems.findIndex(item => item.query === selectedwishlist);
 
                 if (wishlistIndex !== -1) {
-                    // If the wishlist exists, add the new imdbID
                     updatedClickedItems[wishlistIndex].imdbIDs.push(selectedImdbID);
                 } else {
-                    // If the wishlist doesn't exist, create a new one
                     updatedClickedItems.push({
                         query: selectedwishlist,
                         imdbIDs: [selectedImdbID]
@@ -160,14 +154,11 @@ const Movies = ({ loggedInUser }) => {
 
             setSearchQueries((prevState) => {
                 const updatedSearchQueries = [...prevState];
-                // Find the search query in the array
                 const queryIndex = updatedSearchQueries.findIndex(item => item.query === selectedwishlist);
 
                 if (queryIndex !== -1) {
-                    // If the query exists, add the new imdbID
                     updatedSearchQueries[queryIndex].imdbIDs.push(selectedImdbID);
                 } else {
-                    // If the query doesn't exist, create a new one
                     updatedSearchQueries.push({
                         query: selectedwishlist,
                         imdbIDs: [selectedImdbID]
@@ -186,12 +177,6 @@ const Movies = ({ loggedInUser }) => {
     };
 
     // console.log("Clicked Items: ", clickedItems);
-
-    // useEffect(() => {
-    //     clickedItems.map((prod) => {
-            // console.log("Clicked Items:: ", prod.imdbIDs);
-    //     })
-    // })
     // console.log("Selected: ", selectedwishlist);
     const isMovieInWishlist = (imdbID) => {
         return clickedItems.some(item => item.imdbIDs.includes(imdbID));
@@ -246,37 +231,7 @@ const Movies = ({ loggedInUser }) => {
                                 ))
                             )
                         }
-                        {/*                         
-                        {
-                            searchedmovies.map((prod) => (
-                                <Grid item key={prod.imdbID} >
-                                    {loading ? (
-                                        <Skeleton variant="rectangular" animation="wave" className='skeleton_css' />
-                                    ) : (
-                                        <div className='movie_item_css'>
-                                            <Item className='movie_item_item_css'>
-                                                {clickedItems[prod.imdbID] ? (
-                                                    <SiTicktick className="SiTicktick" />
-                                                ) : (
-                                                    <BiCommentAdd
-                                                        onClick={() => { handleItemClick(prod.imdbID); setSelectedImdbID(prod.imdbID); handleOpen() }}
-                                                        className="addto_wishlist"
-                                                    />
-                                                )}
-                                                <Link to={`/single/${prod.imdbID}`} style={{ textDecoration: "none" }}>
-                                                    <img src={prod.Poster} height="240px"
-                                                        width="100%" alt="no img" className='item_item_css' />
-                                                </Link>
-                                                <div className='Movie_title_date'>
-                                                    <p className='Movie_title'>{prod.Title}</p>
-                                                    <p>({prod.Year})</p>
-                                                </div>
-                                            </Item>
-                                        </div>
-                                    )}
-                                </Grid>
-                            ))
-                        } */}
+                        
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
