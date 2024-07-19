@@ -1,0 +1,668 @@
+.movies_css_2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  /* border: 1px solid black; */
+  /* width: 100%; */
+  position: absolute;
+  top: 0;
+}
+
+.movies_css_3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  /* border: 1px solid black; */
+  /* width: 100%; */
+  min-height: 100px;
+  position: relative;
+  left: 10px;
+}
+
+.css_h1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: justify;
+}
+
+.css_h1 h1 {
+  padding: 0;
+  margin: 10px;
+}
+
+.css_h2 {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 5px;
+}
+
+.css_h2 b,
+.css_h2 p {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  text-align: justify;
+}
+
+.css_h2 b {
+  font-size: 20px;
+}
+
+.css_h2 p {
+  font-size: 15px;
+}
+
+.movies_css_4 {
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 80%;
+  margin-left: 40px;
+}
+
+.notdatafound_css {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  max-width: 500px;
+  max-height: 200px;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+}
+
+.notdatafound_css svg {
+  font-size: 150px;
+  color: red;
+}
+
+.notdatafound_css p {
+  font-size: 20px;
+  color: red;
+}
+
+.movies_css_4 .movies_margin_2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+  /* height: auto; */
+  /* gap: 10px; */
+  width: 100%;
+  margin: 0px;
+  /* padding: 20px; */
+}
+
+.RxCross1 {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  position: absolute;
+  right: 0px;
+  top: 1px;
+  border: 1px solid red;
+  background-color: red;
+  cursor: pointer;
+}
+
+.movies_margin_2 .movie_item_item_css {
+  position: relative;
+}
+
+.completion_icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.completion_icon .completion_icon_watched{
+  font-size: 15px;
+}
+
+.completion_icon_watched:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.completion_icon_cross {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completion_icon_cross:hover {
+  background-color: rgb(255, 0, 0);
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .movies_css_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    /* position: absolute; */
+    /* top: 0; */
+  }
+
+  .home_bar_right {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .movies_css_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    min-height: 100px;
+    position: relative;
+    left: 10px;
+  }
+
+  .css_h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h1 h1 {
+    padding: 0;
+    margin: 10px;
+  }
+
+  .css_h2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 5px;
+  }
+
+  .css_h2 b,
+  .css_h2 p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h2 b {
+    font-size: 20px;
+  }
+
+  .css_h2 p {
+    font-size: 15px;
+  }
+
+  .movies_css_4 {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 80%;
+    margin-left: 40px;
+  }
+
+  .notdatafound_css {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    max-height: 200px;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+  }
+
+  .notdatafound_css svg {
+    font-size: 150px;
+    color: red;
+  }
+
+  .notdatafound_css p {
+    font-size: 20px;
+    color: red;
+  }
+
+  .movies_css_4 .movies_margin_2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    /* height: auto; */
+    /* gap: 10px; */
+    width: 100%;
+    margin: 0px;
+    /* padding: 20px; */
+  }
+
+  .RxCross1 {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    border: 1px solid red;
+    background-color: red;
+    cursor: pointer;
+  }
+
+  .movies_margin_2 .movie_item_item_css {
+    position: relative;
+  }
+
+  .completion_icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .movies_css_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .home_bar_right {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .movies_css_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 10px; */
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    /* min-height: auto; */
+    position: relative;
+    left: 0;
+  }
+
+  .css_h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h1 h1 {
+    padding: 0;
+    margin: 10px;
+  }
+
+  .css_h2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 5px;
+  }
+
+  .css_h2 b,
+  .css_h2 p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h2 b {
+    font-size: 20px;
+  }
+
+  .css_h2 p {
+    font-size: 15px;
+  }
+
+  .movies_css_4 {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    /* margin-left: 40px; */
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+
+  .movies_css_4 .movies_margin_2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    /* height: auto; */
+    /* gap: 10px; */
+    width: 100%;
+    margin: 0px;
+    /* padding: 20px; */
+  }
+
+  .movies_margin_2 .movie_item_item_css {
+    position: relative;
+    width: 130px;
+    height: 220px;
+    margin: 5px;
+  }
+
+  .movie_item_item_css img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .movie_item_item_css .Movie_title_date p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movies_css_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .home_bar_right {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .movies_css_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 10px; */
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    /* min-height: auto; */
+    position: relative;
+    left: 0;
+  }
+
+  .css_h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h1 h1 {
+    padding: 0;
+    margin: 10px;
+  }
+
+  .css_h2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 5px;
+  }
+
+  .css_h2 b,
+  .css_h2 p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h2 b {
+    font-size: 20px;
+  }
+
+  .css_h2 p {
+    font-size: 15px;
+  }
+
+  .movies_css_4 {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    /* margin-left: 40px; */
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+
+  .movies_css_4 .movies_margin_2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    /* height: auto; */
+    /* gap: 10px; */
+    width: 100%;
+    margin: 0px;
+    /* padding: 20px; */
+  }
+
+  .movies_margin_2 .movie_item_item_css {
+    position: relative;
+    width: 130px;
+    height: 220px;
+    margin: 5px;
+  }
+
+  .movie_item_item_css img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .movie_item_item_css .Movie_title_date p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movies_css_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  .home_bar_right {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .movies_css_3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 10px; */
+    /* border: 1px solid black; */
+    /* width: 100%; */
+    /* min-height: auto; */
+    position: relative;
+    left: 0;
+  }
+
+  .css_h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    /* text-align: justify; */
+  }
+
+  .css_h1 h1 {
+    padding: 0;
+    margin: 10px;
+    margin-bottom: 0px;
+    display: flex;
+    font-size: 30px;
+  }
+
+  .css_h2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 5px;
+  }
+
+  .css_h2 b,
+  .css_h2 p {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: justify;
+  }
+
+  .css_h2 b {
+    font-size: 20px;
+  }
+
+  .css_h2 p {
+    font-size: 15px;
+  }
+
+  .movies_css_4 {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    /* margin-left: 40px; */
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+
+  .notdatafound_css {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    max-width: 500px;
+    max-height: 200px;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+  }
+
+  .notdatafound_css svg {
+    font-size: 150px;
+    color: red;
+  }
+
+  .notdatafound_css p {
+    font-size: 20px;
+    color: red;
+  }
+
+  .movies_css_4 .movies_margin_2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    /* height: auto; */
+    /* gap: 10px; */
+    width: 100%;
+    margin: 0px;
+    /* padding: 20px; */
+  }
+
+  .RxCross1 {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    border: 1px solid red;
+    background-color: red;
+    cursor: pointer;
+  }
+
+  .movies_margin_2 .movie_item_item_css {
+    position: relative;
+    width: 130px;
+    height: 220px;
+    margin: 5px;
+  }
+
+  .movie_item_item_css img {
+    width: 100%;
+    height: 180px;
+  }
+
+  .movie_item_item_css .Movie_title_date p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .completion_icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    size: 15px;
+  }
+}
