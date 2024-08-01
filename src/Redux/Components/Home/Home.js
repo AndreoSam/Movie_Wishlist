@@ -20,7 +20,7 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 992 });
   const [selected, setSelected] = useState("home");
-  const { newselected, setNewselected, newarr, clickedItems, setClickedItems, setNewarr, wishlist, setWishlist, setSelectedwishlist, setSearchQueries, searchQueries, searchedname, selectedwishlist } = useContext(AppContext);
+  const { newselected, setNewselected, clickedItems, setClickedItems, setNewarr, newarr, wishlist, setWishlist, setSelectedwishlist, setSearchQueries, searchQueries, searchedname, selectedwishlist } = useContext(AppContext);
   // const [newarr, setNewarr] = useState("");
   const [searchwishlist, setSearchwishlist] = useState("")
   // console.log("ID: ", wishlist, searchQueries)
@@ -34,6 +34,7 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
   const navigate = useNavigate();
 
   const filteredWishlist = wishlist.filter(item => item.toLowerCase().includes(searchwishlist.toLowerCase()));
+  // console.log("filteredWishlist: ", filteredWishlist)
 
 
   useEffect(() => {
@@ -42,7 +43,6 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
       const storedWishlist = localStorage.getItem(`wishlist_${loggedInUser}`);
       const storedSelectedWishlist = localStorage.getItem(`selectedWishlist_${loggedInUser}`);
       const storedClickedItems = localStorage.getItem(`clickedItems_${loggedInUser}`);
-
 
       if (storedSearchQueries) {
         setSearchQueries(JSON.parse(storedSearchQueries));
@@ -96,8 +96,6 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
 
   };
 
-  // console.log("Clicked Items: ", clickedItems)
-
   const removeItemFromWishlist = (index) => {
     // console.log("Removing item from wishlist:", index);
 
@@ -109,24 +107,25 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
     setSearchQueries(updatedQuery);
     localStorage.setItem(`searchQueries_${loggedInUser}`, JSON.stringify(updatedQuery));
 
-    if (Array.isArray(clickedItems)) {
+    // if (Array.isArray(clickedItems)) {
       const updatedClickedItems = clickedItems.filter((_, i) => i !== index);
       setClickedItems(updatedClickedItems);
       localStorage.setItem(`clickedItems_${loggedInUser}`, JSON.stringify(updatedClickedItems));
-    }
+    // }
   };
   ////////////////////////////////////////////////////////////////////////////////////////////////
+  // console.log("wishlist: ", wishlist)
+  // console.log("searchQueries: ", searchQueries)
+  // console.log("clickedItems: ", clickedItems)
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
 
-  let dataFound = (false);
-
-  const combinedResults = searchQueries.reduce((acc, prod) => {
-    acc.push(prod);
-    return acc;
-  }, []);
+  // const combinedResults = searchQueries.reduce((acc, prod) => {
+  //   acc.push(prod);
+  //   return acc;
+  // }, []);
 
   useEffect(() => {
     const selectedQuery = searchQueries.find(prod => newselected === prod.query);
@@ -138,7 +137,8 @@ const Home = ({ loggedInUser, setLoggedInUser }) => {
     }
   }, [newselected, searchQueries]);
 
-  // console.log("filteredWishlist: ", filteredWishlist);
+  // console.log("searchQueries: ", searchQueries);
+  // console.log("newarr: ", newarr);
 
   return (
     <div className='home_main'>

@@ -5,12 +5,9 @@ import { wishlistsMovie } from '../Reducer/mediaSlice';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
 import { GoAlertFill, GoX } from "react-icons/go";
 import "./Wishlists.css"
 import Skeleton from '@mui/material/Skeleton';
-import { GoCheck } from "react-icons/go";
-import { RxCross2 } from "react-icons/rx";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -38,12 +35,17 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
   const [newclicked, setNewclicked] = useState([]);
   const [newData, setnewData] = useState([]);
 
+  // console.log("newarr: ", newarr.imdbIDs)
+
   const dispatch = useDispatch()
+
   const mappedImdbIDs = useMemo(() => {
     return Array.isArray(newarr.imdbIDs)
       ? newarr.imdbIDs.map(imdbID => `${imdbID}`)
       : [];
   }, [newarr.imdbIDs]);
+
+  // console.log("mappedImdbIDs: ", mappedImdbIDs)
 
   // const navigate = useNavigate();
   const { loading } = useSelector((state) => state.user)
@@ -77,14 +79,14 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
     }
   }, [loggedInUser]);
 
-
   const toggleCompletion = (prod) => {
     const updatedWatchedItems = watchedItems.includes(prod.imdbID)
       ? watchedItems.filter(item => item !== prod.imdbID)
       : [...watchedItems, prod.imdbID];
     setWatchedItems(updatedWatchedItems);
+
     localStorage.setItem(`watchedItems_${loggedInUser}`, JSON.stringify(updatedWatchedItems));
-    const isWatched = watchedItems.includes(prod.imdbID);
+    // const isWatched = watchedItems.includes(prod.imdbID);
     // console.log("Is watched? ", isWatched);
   };
 
@@ -110,14 +112,13 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
   }, [clickedItems, newselected])
 
   const removeItemFromWishlist = (imdbID) => {
-    console.log('Removing item with imdbID:', imdbID);
+    // console.log('Removing item with imdbID:', imdbID);
     const updatedWishlist = wishlist.filter(item => item.imdbID !== imdbID);
     setWishlist(updatedWishlist);
     localStorage.setItem(`wishlist_${loggedInUser}`, JSON.stringify(updatedWishlist));
 
     const updatedQuery = searchQueries.map((item) => ({
-      ...item,
-      imdbIDs: item.imdbIDs.filter(id => id !== imdbID)
+      ...item, imdbIDs: item.imdbIDs.filter(id => id !== imdbID)
     })).filter(item => item.imdbIDs.length > 0);
     setSearchQueries(updatedQuery);
     localStorage.setItem(`searchQueries_${loggedInUser}`, JSON.stringify(updatedQuery));
@@ -129,7 +130,7 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
       }
       return item;
     }).filter(item => item !== null);
-    console.log('Updated clickedItems:', updatedClickedItems);
+    // console.log('Updated clickedItems:', updatedClickedItems);
     setClickedItems(updatedClickedItems);
     localStorage.setItem(`clickedItems_${loggedInUser}`, JSON.stringify(updatedClickedItems));
   };
@@ -146,7 +147,7 @@ const Wishlists = ({ loggedInUser, setLoggedInUser, prod }) => {
           <b>About this watchlist</b>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
-        
+
       </div>
       <div className='movies_css_4'>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='movies_margin_2' style={{ display: 'flex', justifyContent: "space-around" }}>

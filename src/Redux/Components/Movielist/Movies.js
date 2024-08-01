@@ -16,15 +16,14 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import { Link } from 'react-router-dom';
 import { CiFaceFrown } from "react-icons/ci";
+import { MdErrorOutline } from "react-icons/md";
 
 const style = {
     position: 'absolute',
@@ -46,18 +45,18 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-const Movies = ({ loggedInUser }) => {
+const Movies = () => {
     const [state, setState] = useState("")
     const [newstate, setNewstate] = useState("james")
     const [searchedmovies, setSearchedmovies] = useState([])
     const [pages, setPages] = useState(1)
     const [pageno, setPageno] = useState(1)
-    const { setSearchQueries, clickedItems, setClickedItems, selectedwishlist, setSelectedwishlist, wishlist, selectedImdbID, setSelectedImdbID, addSearchQuery, setSearchedname } = useContext(AppContext);
-    const [searchQuery, setSearchQuery] = useState('');
+    const { setSearchQueries, clickedItems, setClickedItems, selectedwishlist, setSelectedwishlist, wishlist, selectedImdbID, setSelectedImdbID } = useContext(AppContext);
     const [open, setOpen] = React.useState(false);
     const [error, setError] = useState(null);
 
-    const [selectedRadio, setSelectedRadio] = useState(null);
+    // const [selectedRadio, setSelectedRadio] = useState(null);
+    // console.log("state: ", state);
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -68,7 +67,6 @@ const Movies = ({ loggedInUser }) => {
 
     const dispatch = useDispatch("")
     const { loading } = useSelector((state) => state.user)
-
 
     const getMovies = (() => {
         if (!newstate.trim()) {
@@ -81,7 +79,7 @@ const Movies = ({ loggedInUser }) => {
             setSearchedmovies(res.payload.Search)
             const totalResults = res.payload.totalResults;
             setPages(Math.ceil(totalResults / 10))
-            if (res.response == "False") {
+            if (res.response === "False") {
                 alert("no data found")
             }
         }).catch((err) => {
@@ -102,7 +100,10 @@ const Movies = ({ loggedInUser }) => {
     const submitHandler = ((e) => {
         e.preventDefault();
         if (!state.trim()) {
-            setError('Search input cannot be empty.');
+            setError('Search input cannot be empty!');
+            setNewstate("james"); // if search is empty it will show the bydefault data.
+            setPageno(1);
+            setPages(1);
             return;
         }
         setNewstate(state);
@@ -118,24 +119,14 @@ const Movies = ({ loggedInUser }) => {
         handleOpen();
     };
 
-    const performSearch = (query) => {
-        return query === 'notfound' ? [] : ['result1', 'result2'];
-    };
-    const handleSearch = (query) => {
-        setSearchQuery(query);
-        const searchResults = performSearch(query);
-
-        if (searchResults.length === 0) {
-            setError('No results found');
-        } else {
-            setError('');
-        }
-    };
+    // console.log("clickedItems: ", clickedItems)
 
     const handleModalConfirm = () => {
-        if (selectedwishlist) {
-            setClickedItems((prevState) => {
-                const updatedClickedItems = [...prevState];
+        if (selectedwishlist) {     //selectedwishlist === the wishlist which is clicked
+                // console.log("selectedwishlist: ", selectedwishlist)
+
+            setClickedItems((prevState) => {    //here the clickedItems are getting updated.
+                const updatedClickedItems = [...prevState]; //creating a shallow copy
 
                 const wishlistIndex = updatedClickedItems.findIndex(item => item.query === selectedwishlist);
 
@@ -152,8 +143,8 @@ const Movies = ({ loggedInUser }) => {
                 return updatedClickedItems;
             });
 
-            setSearchQueries((prevState) => {
-                const updatedSearchQueries = [...prevState];
+            setSearchQueries((prevState) => {   //here the clickedItems are getting updated.
+                const updatedSearchQueries = [...prevState];    //creating a shallow copy
                 const queryIndex = updatedSearchQueries.findIndex(item => item.query === selectedwishlist);
 
                 if (queryIndex !== -1) {
@@ -178,27 +169,36 @@ const Movies = ({ loggedInUser }) => {
 
     // console.log("Clicked Items: ", clickedItems);
     // console.log("Selected: ", selectedwishlist);
+
     const isMovieInWishlist = (imdbID) => {
-        return clickedItems.some(item => item.imdbIDs.includes(imdbID));
+        return clickedItems.some(item => item.imdbIDs.includes(imdbID));    //checks if at least one element in the array passes the test.
+
     };
+
     return (
         <div className='movies_css'>
             <div>
                 <form onSubmit={submitHandler} >
+                    <div>
+                        {error ?
+                            <div style={{ color: "red", display: "flex", alignItems: "center", justifyContent: 'center', gap: "5px" }}>
+                                <MdErrorOutline />
+                                {error}
+                            </div> : ""}
+                    </div>
                     <div className="main_top_search">
                         <CiSearch className='main_top_search_icon' />
-                        <input placeholder='Enter to search' onChange={(e) => { setState(e.target.value); handleSearch(e.target.value) }} value={searchQuery} />
+                        <input placeholder='Enter to search' onChange={(e) => setState(e.target.value)} value={state} />
                         <button className='main_top_button_icon' type='submit'>Search</button>
                     </div>
                 </form>
-            </div>
+            </div >
             <div className="movies_margin">
                 <div sx={{ width: '100%' }}>
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='movies_margin_1'>
                         {
                             !searchedmovies ? <div className='notdatafound_css'>
                                 <CiFaceFrown />
-
                                 <p>*Searched input too small or no data exist!</p>
                             </div> : (
                                 searchedmovies.map((prod) => (
@@ -231,7 +231,7 @@ const Movies = ({ loggedInUser }) => {
                                 ))
                             )
                         }
-                        
+
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
@@ -284,7 +284,7 @@ const Movies = ({ loggedInUser }) => {
                     </Stack>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
